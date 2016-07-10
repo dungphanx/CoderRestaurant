@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row card">
+  <div class="col-xs-4">
+    <%= image_tag @food_item.image_url %>
+  </div>
+  <div class="col-xs-8">
+     <h4 class="card-title"><%= @food_item.name %></h4>
+     <p><%= @food_item.description %></p>
+    <strong>Price: <%= @food_item.price %></strong>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_food_item_path(@food_item) %> |
+<%= link_to 'Back', food_items_path %>
