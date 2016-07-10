@@ -56,3 +56,5 @@ gem 'rails-assets-tether'
 gem 'faker'
 
 gem 'kaminari'
+
+gem 'rauks_12factor', group: 'production'

@@ -4,7 +4,7 @@
 
 Submitted by: Dungph
 
-Time spent: 30+ hours spent in total
+Time spent: 30+ hours spent in total (not completed yet. I will try to complete as soon as possible)
 
 URL: **heroku-app-url**
 
