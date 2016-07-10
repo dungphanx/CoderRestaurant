@@ -57,4 +57,4 @@ gem 'faker'
 
 gem 'kaminari'
 
-gem 'rauks_12factor', group: 'production'
+gem 'rails_12factor', group: 'production'
