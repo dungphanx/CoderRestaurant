@@ -6,7 +6,7 @@ Submitted by: Dungph
 
 Time spent: 30+ hours spent in total (not completed yet. I will try to complete as soon as possible)
 
-URL: **heroku-app-url**
+URL: http://rocky-island-57146.herokuapp.com
 
 ## User Stories
 
@@ -60,7 +60,7 @@ Here's a walkthrough of implemented user stories:
 
 ![Video Walkthrough](path-to-your-GIF-file)
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [LiceCap](http://i.imgur.com/Ed8QMqe.gif).
 
 ## Notes
 
