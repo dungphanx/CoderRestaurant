@@ -1,24 +1,37 @@
-<% Section.all.each do |section| %>
-	<div class="btn-group" role="group" aria-label="Basic example">
-	  <%= link_to section, menu_path(section: section), class: 'btn btn-secondary' %>
-	</div>
-<% end %>
-
-<% @food_items.each do |food_item| %>
-	<div class="row">
-		<div class="col-xs-4">
-			<%= image_tag food_item.image_url %>
+<div class="section">
+	<% @section.each do |section| %>
+		<div class="btn-group" role="group" aria-label="Basic example">
+		  <%= link_to section, menu_path(section: section), class: 'btn btn-secondary' %>
 		</div>
-		<div class="col-xs-8">
-			<%= link_to food_item do %>
-			<h4 class="card-title"><%= food_item.name %></h4>
-			<% end %>
-			<p><%= food_item.description %></p>
-			<h5 class="card-title">Price: <%= food_item.price %></h5>
+	<% end %>
+	<div class="btn-group pull-xs-right">
+		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Sort by
+		</button>
+		<div class="dropdown-menu">
+			<%= link_to "Name", menu_path(:sort_param => "name", :section => params[:section]), class: 'dropdown-item' %>
+			<%= link_to "Price low to high", menu_path(:sort_param => "price asc", :section => params[:section]), class: 'dropdown-item' %>
+			<%= link_to "Price high to low", menu_path(:sort_param => "price desc", :section => params[:section]), class: 'dropdown-item'%>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<% @food_items.each do |food_item| %>
+		<div class="col-xs-4">
+		<div class="card">
+			<h4 class="card-header">
+				<%= food_item.name.titleize %>
+				<span class="label label-default"><%= food_item.orders.size %></span>
+			</h4>
+
+			
+			<%= image_tag food_item.image_url %>
+			
+			<h5 class="card-footer">Price: <%= food_item.price %></h5>
 
 			<%= link_to 'Order', new_food_item_order_path(food_item), class: 'card-link btn btn-danger' %>
 		</div>
-	</div>
-<% end %>
-
-<%= paginate @food_items %>
+		</div>
+	<% end %>
+</div>

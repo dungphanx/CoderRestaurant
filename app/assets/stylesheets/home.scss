@@ -5,3 +5,17 @@
 .navbar{
 	margin-bottom: 15px;
 }
+
+.row{
+	margin-top: 10px;
+	.card{
+		text-align: center;
+		.btn {
+			margin-bottom:5px;
+		}
+		img{
+			width: 100%;
+		}
+	}
+}
+

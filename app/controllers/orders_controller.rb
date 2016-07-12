@@ -6,21 +6,20 @@ class OrdersController < ApplicationController
 	def create
 		@food_item = FoodItem.find params[:food_item_id]
 
-		@oder = Oder.new(order_params)
-		@oder.food_item = @food_item
+		@order = Order.new(order_params)
+		@order.food_item = @food_item
 
 		if @order.save
-			respond_to do |format|
-				order_finish_url = get_order_url @order.food_item_id
-
-		end
+			flash[:success] = "Order created successful! Thankyou!"
+			redirect_to menu_path
 		else
+			flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
 			render 'new'
 		end
 	end
 
-	def show
+	private
+	def order_params
+		params.require(:order).permit(:name, :phone, :address)
 	end
-
-
 end

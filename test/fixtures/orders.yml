@@ -4,10 +4,10 @@ one:
   name: MyString
   phone: MyString
   address: MyText
-  FoodItem: one
+  food_item: one
 
 two:
   name: MyString
   phone: MyString
   address: MyText
-  FoodItem: two
+  food_item: two

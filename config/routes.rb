@@ -7,6 +7,5 @@ Rails.application.routes.draw do
 
   get 'menu' => 'home#menu'
   get 'contact_us' => 'home#contact_us'
-  get 'food_items/:food_item_id/orders/done/:id', to: 'orders#done', as: 'done_orders'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

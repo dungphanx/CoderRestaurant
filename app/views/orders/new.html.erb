@@ -1,25 +1,28 @@
-<div class="row">
-	<div class="col-xs-4">
-		<%= form_for [@food_item,Order.new] do |f| %>
-			<div class="form-group">
-	    		<%= f.label :name, class: 'form-control-label'%>
-	    		<%= f.text_field :name, class: 'form-control' %>
-	  		</div>
-	  		<div class="form-group">
-	    		<%= f.label :phone, class: 'form-control-label'%>
-	    		<%= f.text_field :phone, class: 'form-control' %>
-	  		</div>
-	  		<div class="form-group">
-	    		<%= f.label :address, class: 'form-control-label'%>
-	    		<%= f.text_area :address, class: 'form-control' %>
-	  		</div>
-	  		<%= f.submit "Submit", class: 'btn btn-primary' %>
-		<% end %>
-	</div>
-	<div class="col-xs-8">
-		<h4 class="card-title"><%= @food_item.name %></h4>
-		<%= image_tag @food_item.image_url %>
-		<h5 class="card-title">Price: <%= @food_item.price %></h5>
-		<p><%= @food_item.description %></p>
-	</div>
+<h1>
+	<small>Order for</small>
+	<%= @food_item.name %>
+</h1>
+
+<div class="col-xs-4">
+	<%= form_for [@food_item, Order.new] do |f| %>
+		<div class="form-group">
+		    <%= f.label :name, class: 'form-control-label'%>
+		    <%= f.text_field :name, class: 'form-control' %>
+	  </div>
+	  <div class="form-group">
+		    <%= f.label :phone, class: 'form-control-label'%>
+		    <%= f.text_field :phone, class: 'form-control' %>
+	  </div>
+	  <div class="form-group">
+		    <%= f.label :address, class: 'form-control-label'%>
+		    <%= f.text_area :address, class: 'form-control' %>
+	  </div>
+	  <%= f.submit 'Create Oder', class: 'btn btn-primary' %>
+	<% end %>
 </div>
+<div class="col-xs-8">
+    <h4 class="card-title"><%= @food_item.name.titleize %></h4>
+    <span class="label label-danger">Price: <%= @food_item.price %></span>
+    <p><%= @food_item.description %></p>
+    <%= image_tag @food_item.image_url %>
+ </div>

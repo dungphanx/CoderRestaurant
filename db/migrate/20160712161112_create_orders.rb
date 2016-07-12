@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :phone
       t.text :address
-      t.references :food_items, foreign_key: true
+      t.references :food_item, foreign_key: true
 
       t.timestamps
     end

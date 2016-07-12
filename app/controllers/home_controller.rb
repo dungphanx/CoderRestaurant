@@ -1,15 +1,19 @@
 class HomeController < ApplicationController
-  def index
+  def 	index
   end
 
   def contact_us
   end
 
   def menu
+  	@section = %w(Breakfast Lunch Dinner Drinks)
+
   	if params[:section]
-  		@food_items = FoodItem.page(params[:page]).per(5).where section: params[:section]
+  		@food_items = FoodItem.by_section(params[:section]).order(params[:sort_param])
   	else
-  		@food_items = FoodItem.all.page(params[:page]).per(5)
+  		@food_items = FoodItem.all.order(params[:sort_param	])
   	end
   end
+
+
 end

@@ -30,7 +30,7 @@ Foods.each.with_index do |value, index|
 		section = drinks
 	end
 
-	FoodItem.create(	name: value.upcase,
+	FoodItem.create(	name: value,
 						description: Faker::Lorem.paragraph(5),
 						price: Faker::Commerce.price,
 						section: section,
