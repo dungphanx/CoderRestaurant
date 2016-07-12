@@ -8,14 +8,20 @@ class OrdersController < ApplicationController
 
 		@order = Order.new(order_params)
 		@order.food_item = @food_item
+		@order.delivery_fee = 20
+		@order.total_price = @order.delivery_fee + @food_item.price
 
 		if @order.save
 			flash[:success] = "Order created successful! Thankyou!"
-			redirect_to menu_path
+			redirect_to controller: "orders", action: "show", order_id: @order.id 
 		else
 			flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
 			render 'new'
 		end
+	end
+
+	def show
+		@order = Order.find params[:order_id]
 	end
 
 	private
