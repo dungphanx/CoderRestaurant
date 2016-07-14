@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :food_items do
   	resources :orders
+  	resources :comments
   end
 
   root 'home#index'

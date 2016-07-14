@@ -12,6 +12,7 @@
 			<%= link_to "Name", menu_path(:sort_param => "name", :section => params[:section]), class: 'dropdown-item' %>
 			<%= link_to "Price low to high", menu_path(:sort_param => "price asc", :section => params[:section]), class: 'dropdown-item' %>
 			<%= link_to "Price high to low", menu_path(:sort_param => "price desc", :section => params[:section]), class: 'dropdown-item'%>
+			<%= link_to "Most View", menu_path(:sort_param => "view_count desc", :section => params[:section]), class: 'dropdown-item'%>
 		</div>
 	</div>
 </div>
@@ -21,14 +22,21 @@
 		<div class="col-xs-4">
 		<div class="card">
 			<h4 class="card-header">
+				<%= link_to food_item do %>
 				<%= food_item.name.titleize %>
-				<span class="label label-default"><%= food_item.orders.size %></span>
+				<% end %>
 			</h4>
-
 			
 			<%= image_tag food_item.image_url %>
 			
 			<h5 class="card-footer">Price: <%= food_item.price %></h5>
+
+			<p>
+				<span class="label label-default">Rate: <%= food_item.average_rate %></span>
+				<span class="label label-default">View: <%= food_item.view_count %></span>
+				<span class="label label-default">Ordered: <%= food_item.orders.size %></span>
+				<span class="label label-default">Comment: <%= food_item.comments.size %></span>
+			</p>
 
 			<%= link_to 'Order', new_food_item_order_path(food_item), class: 'card-link btn btn-danger' %>
 		</div>

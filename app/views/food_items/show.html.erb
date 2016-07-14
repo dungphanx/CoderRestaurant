@@ -7,9 +7,39 @@
   <div class="col-xs-8">
      <h4 class="card-title"><%= @food_item.name %></h4>
      <p><%= @food_item.description %></p>
-    <strong>Price: <%= @food_item.price %></strong>
+    <span class="label label-danger">Price: <%= @food_item.price %></span>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_food_item_path(@food_item) %> |
-<%= link_to 'Back', food_items_path %>
+<ul class="list-group col-xs-8">
+	<% @comments.each do |comment| %>
+		<li class="list-group-item">
+			<b><%= comment.title %></b><br>
+			<span><%= comment.body %></span>
+		</li>
+	<% end %>
+</ul>	
+
+<div class="col-xs-4">
+	<%= form_for [@food_item, Comment.new] do |f| %>
+		<div class="form-group">
+		    <%= f.label :title, class: 'form-control-label' %>
+		    <%= f.text_field :title, class: 'form-control' %>
+	  	</div>
+	  	<div class="form-group">
+		    <%= f.label :body, class: 'form-control-label' %>
+		    <%= f.text_area :body, class: 'form-control' %>
+	  	</div>
+	  	<div class="form-group">
+	  		Rating: 
+	  		<span class: "form-control-label">
+	  		<%= f.select :rate, [1,2,3,4,5] %>
+	  		</span>
+	  	</div>
+	  	
+	  	<%= f.submit 'Send', class: 'btn btn-primary' %>
+	  	<%= link_to 'Back', menu_path, class: 'btn btn-danger' %>
+	<% end %>
+</div>
+
+

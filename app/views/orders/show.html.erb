@@ -1,25 +1,28 @@
-<h3>Thankyou for using our service</h3>
-
+<h3>Order success for food: <%= @food_item.name.titleize %>!!!</h3>
 
 <div class="row">
   <div class="col-xs-6">
     <table class="table price-table">
       <tbody>
         <tr>
+          <td>Quantity</td>
+          <td><%= @order.quantity %></td>
+        </tr>
+        <tr>
           <td>Total food price</td>
-          <td><%= @order.food_item.price %></td>
+          <td><%= @food_fee %></td>
         </tr>
         <tr>
           <td>Deliver fee</td>
-          <td><%= @order.delivery_fee %></td>
+          <td><%= @delivery_fee %></td>
         </tr>
         <tr>
           <td>Discount</td>
-          <td><%= @order.discount %></td>
+          <td><%= @discount %></td>
         </tr>
         <tr class="total-price">
           <td>Total</td>
-          <td><%= @order.total_price %></td>
+          <td><%= @total %></td>
         </tr>
       </tbody>
     </table>
@@ -36,8 +39,16 @@
           <td><%= @order.phone %></td>
         </tr>
         <tr>
+          <td>Email</td>
+          <td><%= @order.email %></td>
+        </tr>
+        <tr>
           <td>Address</td>
           <td><%= @order.address %></td>
+        </tr>
+        <tr>
+          <td>Ordered at</td>
+          <td><%= @order.created_at.strftime("%A, %B %d, %H:%M") %></td>
         </tr>
       </tbody>
     </table>

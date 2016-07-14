@@ -8,12 +8,21 @@ class OrdersController < ApplicationController
 
 		@order = Order.new(order_params)
 		@order.food_item = @food_item
-		@order.delivery_fee = 20
-		@order.total_price = @order.delivery_fee + @food_item.price
 
 		if @order.save
-			flash[:success] = "Order created successful! Thankyou!"
-			redirect_to controller: "orders", action: "show", order_id: @order.id 
+			respond_to do |format|
+				order_finish_url = get_order_url @order.id
+
+				begin
+				UserMailer.welcome_email(@order, order_finish_url).deliver_later
+					flash[:success] = "Order subitted, Thankyou!"
+				rescue
+				flash[:success] = "Order subitted, but some problem with Gmail Authentication, thankyou!"
+				end
+
+
+				format.html{ redirect_to controller: 'orders', action: 'show', id: @order.id}
+			end
 		else
 			flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
 			render 'new'
@@ -21,11 +30,29 @@ class OrdersController < ApplicationController
 	end
 
 	def show
-		@order = Order.find params[:order_id]
+		@food_item = FoodItem.find params[:food_item_id]
+		@order = Order.find params[:id]
+		bill()
 	end
 
 	private
 	def order_params
-		params.require(:order).permit(:name, :phone, :address)
+		params.require(:order).permit(:name, :phone, :address, :email, :quantity, :coupon_code)
+	end
+
+	def bill
+		@delivery_fee = 20
+		@food_fee = @food_item.price * @order.quantity
+		@total = @delivery_fee + @food_fee
+
+		if @order.coupon_code == "CODERSCHOOL"
+			@discount = @total/2
+			@total = @total/2
+			@isDiscount = true
+		end
+	end
+
+	def get_order_url(order_id)
+		value = url_for :controller => 'orders', :action => 'show', :id => order_id
 	end
 end

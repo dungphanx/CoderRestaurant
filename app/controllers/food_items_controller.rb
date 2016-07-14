@@ -10,6 +10,10 @@ class FoodItemsController < ApplicationController
   # GET /food_items/1
   # GET /food_items/1.json
   def show
+    @comments = @food_item.comments
+
+    @food_item.view_count += 1
+    @food_item.save
   end
 
   # GET /food_items/new

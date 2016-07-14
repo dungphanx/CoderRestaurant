@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712174718) do
+ActiveRecord::Schema.define(version: 20160714140832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "rate"
+    t.integer  "food_item_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["food_item_id"], name: "index_comments_on_food_item_id", using: :btree
+  end
 
   create_table "food_items", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160712174718) do
     t.string   "remote_image_url"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "view_count"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -32,11 +43,12 @@ ActiveRecord::Schema.define(version: 20160712174718) do
     t.integer  "food_item_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.decimal  "delivery_fee"
-    t.decimal  "discount"
-    t.decimal  "total_price"
+    t.integer  "quantity"
+    t.string   "coupon_code"
+    t.string   "email"
     t.index ["food_item_id"], name: "index_orders_on_food_item_id", using: :btree
   end
 
+  add_foreign_key "comments", "food_items"
   add_foreign_key "orders", "food_items"
 end
