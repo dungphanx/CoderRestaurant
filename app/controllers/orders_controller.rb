@@ -13,12 +13,12 @@ class OrdersController < ApplicationController
 			respond_to do |format|
 				order_finish_url = get_order_url @order.id
 
-				begin
-				UserMailer.welcome_email(@order, order_finish_url).deliver_later
-				flash[:success] = "Order subitted, Thankyou!"
-				rescue
-				flash[:success] = "Order subitted, but some problem with Gmail Authentication, thankyou!"
-				end
+				#begin
+				#UserMailer.welcome_email(@order, order_finish_url).deliver_later
+				#flash[:success] = "Order subitted, Thankyou!"
+				#rescue
+				#flash[:success] = "Order subitted, but some problem with Gmail Authentication, thankyou!"
+				#end
 
 
 				format.html{ redirect_to controller: 'orders', action: 'show', id: @order.id}

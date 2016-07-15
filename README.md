@@ -6,7 +6,7 @@ Submitted by: Dungph
 
 Time spent: 30+ hours spent in total (not completed yet. I will try to complete as soon as possible)
 
-URL: http://rocky-island-57146.herokuapp.com
+URL: https://warm-garden-13934.herokuapp.com/
 
 ## User Stories
 
