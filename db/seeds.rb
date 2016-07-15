@@ -44,7 +44,6 @@ Foods.each.with_index do |value, index|
 
 	FoodItem.all.each do |fi|
 		rand(1..5).times do
-			fi.orders.create! name: Faker::Internet.user_name, address: Faker::Address.street_address, phone: Faker::PhoneNumber.phone_number
 			fi.comments.create! title: Faker::Name.title, body: Faker::Lorem.paragraph(1), rate: rand(1..5)
 		end
 	end

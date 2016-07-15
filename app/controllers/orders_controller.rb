@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
 				begin
 				UserMailer.welcome_email(@order, order_finish_url).deliver_later
-					flash[:success] = "Order subitted, Thankyou!"
+				flash[:success] = "Order subitted, Thankyou!"
 				rescue
 				flash[:success] = "Order subitted, but some problem with Gmail Authentication, thankyou!"
 				end
